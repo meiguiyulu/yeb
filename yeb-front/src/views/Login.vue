@@ -39,9 +39,9 @@ export default {
         code: '',
       },
       loading: false, // 加载中
-      checked: true, // 记住我
+      checked: true,
       rules: {
-        username: [{required: true, message: '请输入用户名', trigger: 'blur'}], // el-form-item中的prop对应
+        username: [{required: true, message: '请输入用户名', trigger: 'blur'}],
         password: [{required: true, message: '请输入密码', trigger: 'blur'}],
         code: [{required: true, message: '请输入验证码', trigger: 'blur'}]
       }
@@ -52,8 +52,8 @@ export default {
     updateCaptcha() {
       this.captchaUrl = '/captcha?time=' + new Date()
     },
-    // 登录
     submitLogin() {
+      // 登录
       this.$refs.loginForm.validate((valid) => {
         if (valid) {
           this.loading = true

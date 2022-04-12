@@ -10,7 +10,7 @@ axios.interceptors.request.use(config => {
         config.headers['Authorization'] = window.sessionStorage.getItem('tokenStr')
     }
     return config;
-}, error => {
+},error => {
     console.log(error)
 })
 
