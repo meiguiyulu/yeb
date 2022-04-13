@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/yeb-back/server/server.iml" filepath="$PROJECT_DIR$/yeb-back/server/server.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/yeb.iml" filepath="$PROJECT_DIR$/.idea/yeb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/yeb-back/yeb-back.iml" filepath="$PROJECT_DIR$/yeb-back/yeb-back.iml" />
     </modules>
   </component>
 </project>
