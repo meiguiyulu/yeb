@@ -1,6 +1,7 @@
 package com.lyj.server.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.lyj.server.common.RespBean;
 import com.lyj.server.config.security.JwtTokenUtil;
 import com.lyj.server.pojo.Admin;
@@ -40,8 +41,8 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
 
-    @Value("${jwt.tokenHeader}")
-    private String tokenHeader;
+    @Value("${jwt.tokenHead}")
+    private String tokenHead;
 
     @Autowired
     private AdminMapper adminMapper;
@@ -51,11 +52,19 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
      *
      * @param username
      * @param password
+     * @param code
      * @param request
      * @return token
      */
     @Override
-    public RespBean login(String username, String password, HttpServletRequest request) {
+    public RespBean login(String username, String password, String code, HttpServletRequest request) {
+        /* 从session中读取验证码的数据 */
+        String captcha = (String) request.getSession().getAttribute("captcha");
+        if (StringUtils.isEmpty(code) || !captcha.equalsIgnoreCase(code)) {
+            return RespBean.error("验证码输入错误, 请重新输入!");
+        }
+
+        /* 登录 */
         UserDetails user = userDetailsService.loadUserByUsername(username);
         if (user == null || !passwordEncoder.matches(password, user.getPassword())) {
             return RespBean.error("用户名或密码错误");
@@ -73,7 +82,7 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
         String token = jwtTokenUtil.generateToken(user);
         Map<String, Object> map = new HashMap<>();
         map.put("token", token);
-        map.put("tokenHead", tokenHeader);
+        map.put("tokenHead", tokenHead);
         return RespBean.success("登陆成功", map);
     }
 
