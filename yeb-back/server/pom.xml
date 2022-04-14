@@ -66,13 +66,23 @@
             <artifactId>swagger-bootstrap-ui</artifactId>
             <version>1.9.6</version>
         </dependency>
-<!--        &lt;!&ndash; https://mvnrepository.com/artifact/io.springfox/springfox-swagger-ui &ndash;&gt;
-        &lt;!&ndash;Swagger-ui依赖&ndash;&gt;
+        <!--        &lt;!&ndash; https://mvnrepository.com/artifact/io.springfox/springfox-swagger-ui &ndash;&gt;
+                &lt;!&ndash;Swagger-ui依赖&ndash;&gt;
+                <dependency>
+                    <groupId>io.springfox</groupId>
+                    <artifactId>springfox-swagger-ui</artifactId>
+                    <version>2.9.2</version>
+                </dependency>-->
+        <!--
+        使用 Spring Boot 和 io.jsonwebtoken:jjwt 来实现 JWT 登录时报错
+        解决java.lang.ClassNotFoundException: javax.xml.bind.DatatypeConverter
+        可能是JDK版本太高
+        -->
         <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger-ui</artifactId>
-            <version>2.9.2</version>
-        </dependency>-->
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+            <version>2.3.1</version>
+        </dependency>
 
     </dependencies>
 

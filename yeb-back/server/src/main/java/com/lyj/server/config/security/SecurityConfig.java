@@ -52,6 +52,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
+    /**
+     * 放行以下资源
+     *
+     * @param web
+     * @throws Exception
+     */
     @Override
     public void configure(WebSecurity web) throws Exception {
         web.ignoring().antMatchers(
@@ -80,7 +86,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 /* 放行 登录注销 请求*/
-                .antMatchers("/login", "/logout").permitAll()
+//                .antMatchers("/login", "/logout").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .headers()
