@@ -65,7 +65,7 @@ public class JwtTokenUtil {
      * @param token
      * @return
      */
-    private String getUserNameFromToken(String token) {
+    public String getUserNameFromToken(String token) {
         String username = null;
         try {
             Claims claims = getClaimsFromToken(token);
