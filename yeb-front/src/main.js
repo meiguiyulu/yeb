@@ -31,7 +31,7 @@ router.beforeEach(((to, from, next) => {
     if (window.sessionStorage.getItem('tokenStr')) {
         initMenu(router, store)
         // 如果用户不存在
-/*        if (!window.sessionStorage.getItem('user')) {
+        if (!window.sessionStorage.getItem('user')) {
             // 判断用户信息是否存在
             return getRequest('/admin/info').then(resp => {
                 if (resp) {
@@ -42,14 +42,14 @@ router.beforeEach(((to, from, next) => {
                     next();
                 }
             })
-        }*/
+        }
         next();
     } else {
-/*        if (to.path === '/') {
+        if (to.path === '/') {
             next()
         } else {
             next('/?redirect=' + to.path)
-        }*/
+        }
         next()
     }
 }))

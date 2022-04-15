@@ -5,7 +5,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
-        routes: []
+        routes: [],
+        currentAdmin: JSON.parse(window.sessionStorage.getItem('user')), // 当前用户
     },
     getters: {},
     mutations: {
