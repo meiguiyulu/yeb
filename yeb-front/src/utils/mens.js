@@ -9,7 +9,7 @@ export const initMenu = (router, store) => {
         return;
     }
 
-    getRequest('/system/config/menu').then(data => {
+    getRequest('/system/cfg/menu').then(data => {
         // 如果数据存在 格式化路由
         if (data) {
             // 格式化好路由

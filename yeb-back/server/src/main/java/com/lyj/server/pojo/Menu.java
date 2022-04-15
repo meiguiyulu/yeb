@@ -4,14 +4,18 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableField;
+
 import java.io.Serializable;
+import java.util.List;
+
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author LiuYunJie
@@ -79,6 +83,10 @@ public class Menu implements Serializable {
      * 是否启用
      */
     private Boolean enabled;
+
+    @ApiModelProperty(value = "子菜单")
+    @TableField(exist = false)
+    List<Menu> children;
 
 
 }

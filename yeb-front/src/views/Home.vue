@@ -5,12 +5,12 @@
       <el-container>
         <!--侧边栏-->
         <el-aside width="200px">
-          <el-menu router>
-            <el-submenu index="1" v-for="(item, index) in this.$router.options.routes"
+          <el-menu router unique-opened>
+            <el-submenu :index="index + ''" v-for="(item, index) in routes"
                         :key="index"
                         v-if="!item.hidden">
               <template slot="title">
-                <i class="el-icon-message"></i>
+                <i :class="item.iconCls" style="margin-right: 5px;"></i>
                 <span>{{ item.name }}</span>
               </template>
               <el-menu-item-group>
@@ -36,6 +36,11 @@
 <script>
 export default {
   name: "Home",
+  computed: {
+    routes() {
+      return this.$store.state.routes;
+    }
+  },
   methods: {
     /*    menuClick(index) {
           this.$router.push(index);

@@ -51,6 +51,7 @@ export default {
     // 点击刷新验证码
     updateCaptcha() {
       this.captchaUrl = '/captcha?time=' + new Date()
+      // this.captchaUrl = '/captcha'
     },
     submitLogin() {
       // 登录
