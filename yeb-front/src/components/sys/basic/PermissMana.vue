@@ -1,12 +1,12 @@
 <template>
-  <div>
-    这是test2
-  </div>
+<div>
+  权限组
+</div>
 </template>
 
 <script>
 export default {
-  name: "test2"
+  name: "PermissMana"
 }
 </script>
 

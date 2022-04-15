@@ -1,12 +1,12 @@
 <template>
-  <div>
-    这是test1
-  </div>
+<div>
+  职称管理
+</div>
 </template>
 
 <script>
 export default {
-  name: "test1"
+  name: "JobleMana"
 }
 </script>
 

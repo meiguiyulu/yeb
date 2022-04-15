@@ -17,21 +17,19 @@
       <el-container>
         <!--侧边栏-->
         <el-aside width="200px">
+
+          <!-- 1、添加 router  -->
           <el-menu router unique-opened>
-            <el-submenu :index="index + ''" v-for="(item, index) in routes"
-                        :key="index"
-                        v-if="!item.hidden">
-              <template slot="title">
-                <i :class="item.iconCls" style="margin-right: 5px;"></i>
+            <!-- 2、循环整个路由组件，不展示 hidden: true 的路由组件 -->
+            <el-submenu :index="index +''" v-for="(item,index) in routes"
+                        :key="index" v-if="!item.hidden">
+              <template slot="title"><i :class="item.iconCls" style="color: black;margin-right: 5px"></i>
                 <span>{{ item.name }}</span>
               </template>
-              <el-menu-item-group>
-                <el-menu-item :index="children.path"
-                              v-for="(children, index2) in item.children"
-                              :key="index2">
-                  {{ children.name }}
-                </el-menu-item>
-              </el-menu-item-group>
+              <!-- 3、循环遍历子路由 -->
+              <el-menu-item :index="children.path"
+                            v-for="(children,index) in item.children" :key="index">{{ children.name }}
+              </el-menu-item>
             </el-submenu>
           </el-menu>
         </el-aside>
@@ -46,7 +44,7 @@
             <div class="homeWelcome" v-if="this.$router.currentRoute.path === '/home'">
               欢迎！
             </div>
-            <router-view/>
+            <router-view class="homeRouterView"/>
           </el-main>
         </el-container>
       </el-container>
