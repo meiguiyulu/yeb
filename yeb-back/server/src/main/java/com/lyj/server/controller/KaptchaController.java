@@ -4,6 +4,7 @@ import com.google.code.kaptcha.impl.DefaultKaptcha;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,6 +21,9 @@ public class KaptchaController {
 
     @Autowired
     private DefaultKaptcha defaultKaptcha;
+
+    @Autowired
+    private RedisTemplate<String, Object> redisTemplate;
 
     @ApiOperation(value = "验证码")
     @GetMapping(value = "/captcha", produces = "image/jpeg")
@@ -39,8 +43,14 @@ public class KaptchaController {
         //获取验证码文本内容
         String text = defaultKaptcha.createText();
         System.out.println("验证码内容：" + text);
-        //将验证码文本内容放入session
+
+/*        //将验证码文本内容放入session
         request.getSession().setAttribute("captcha", text);
+        */
+
+        // 将验证码存入 redis
+        redisTemplate.opsForValue().set("kaptcha", text);
+
         //根据文本验证码内容创建图形验证码
         BufferedImage image = defaultKaptcha.createImage(text);
         ServletOutputStream outputStream = null;

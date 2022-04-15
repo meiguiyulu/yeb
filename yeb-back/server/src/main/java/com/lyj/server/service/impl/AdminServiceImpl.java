@@ -10,6 +10,7 @@ import com.lyj.server.service.IAdminService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -47,6 +48,9 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
     @Autowired
     private AdminMapper adminMapper;
 
+    @Autowired
+    private RedisTemplate<String, Object> redisTemplate;
+
     /**
      * 登录
      *
@@ -58,8 +62,11 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
      */
     @Override
     public RespBean login(String username, String password, String code, HttpServletRequest request) {
-        /* 从session中读取验证码的数据 */
-        String captcha = (String) request.getSession().getAttribute("captcha");
+        /*        *//* 从session中读取验证码的数据 *//*
+        String captcha = (String) request.getSession().getAttribute("captcha");*/
+        // 从redis中获取验证码的数据
+        String captcha = (String) redisTemplate.opsForValue().get("kaptcha");
+
         if (StringUtils.isEmpty(code) || !captcha.equalsIgnoreCase(code)) {
             return RespBean.error("验证码输入错误, 请重新输入!");
         }

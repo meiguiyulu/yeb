@@ -6,9 +6,11 @@ import com.lyj.server.mapper.MenuMapper;
 import com.lyj.server.service.IMenuService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.util.List;
 
@@ -26,6 +28,9 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
     @Autowired
     private MenuMapper menuMapper;
 
+    @Autowired
+    private RedisTemplate<String, Object> redisTemplate;
+
     /**
      * 通过用户Id查询菜单列表
      *
@@ -35,6 +40,17 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
     public List<Menu> getMenusByAdminId() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Admin admin = (Admin) authentication.getPrincipal();
-        return menuMapper.getMenusByAdminId(admin.getId());
+        Integer adminId = admin.getId();
+        /**
+         * 因为菜单不是经常需要改动的 但是需要经常查询
+         * 所以可以将菜单的相关数据存放在 redis 缓存中
+         */
+        List<Menu> menus = (List<Menu>) redisTemplate.opsForValue().get("menu_" + adminId);
+        if (CollectionUtils.isEmpty(menus)) {
+            menus = menuMapper.getMenusByAdminId(adminId);
+            redisTemplate.opsForValue().set("menu_" + adminId, menus);
+        }
+
+        return menus;
     }
 }

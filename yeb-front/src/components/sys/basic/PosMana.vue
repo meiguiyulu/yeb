@@ -77,7 +77,7 @@ export default {
   name: "PosMana",
   data() {
     return {
-      pos: { // 查询添加职位数据
+      pos: { // 添加职位数据
         name: ''
       },
       positions: [],
@@ -88,6 +88,9 @@ export default {
       multipleSelection: [] // 批量删除勾选的对象
     }
   },
+  /**
+   * Vue的生命周期中 初始化即运行
+   */
   mounted() {
     // 调用获取后端接口所有职位数据方法
     this.initPositions()
@@ -142,11 +145,13 @@ export default {
       if (this.pos.name) {
         this.postRequest('/system/basic/pos/', this.pos).then(resp => {
           if (resp) {
+            /**
+             * 刷新表格
+             */
             this.initPositions()
             this.pos.name = ''
           }
         })
-
       } else {
         this.$message.error('职位名称不能为空！')
       }
