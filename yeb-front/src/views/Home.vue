@@ -38,7 +38,14 @@
 
         <el-container>
           <el-main>
-            内容
+            <!-- element-ui 面包屑 -->
+            <el-breadcrumb separator-class="el-icon-arrow-right"  v-if="this.$router.currentRoute.path != '/home'">
+              <el-breadcrumb-item :to="{ path: '/home' }">首页</el-breadcrumb-item>
+              <el-breadcrumb-item>{{ this.$router.currentRoute.name }}</el-breadcrumb-item>
+            </el-breadcrumb>
+            <div class="homeWelcome" v-if="this.$router.currentRoute.path === '/home'">
+              欢迎！
+            </div>
             <router-view/>
           </el-main>
         </el-container>
@@ -51,14 +58,18 @@
 export default {
   name: "Home",
   data() {
+    return {
+      // 获取用户信息，将字符串转对象
+      user: JSON.parse(window.sessionStorage.getItem('user'))
+    }
   },
   computed: {
     routes() {
       return this.$store.state.routes;
     },
-    user() {
-      return this.$store.state.currentAdmin;
-    }
+    /*    user() {
+          return this.$store.state.currentAdmin;
+        }*/
   },
   methods: {
     /*    menuClick(index) {

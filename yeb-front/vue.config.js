@@ -14,10 +14,12 @@ proxyObj['/'] = {
 }
 
 // 在线聊天 代理
+/*
 proxyObj['/ws'] = {
   ws: true,
   target: 'ws://localhost:8081'
 }
+*/
 
 
 // 访问的默认的路径和端口
