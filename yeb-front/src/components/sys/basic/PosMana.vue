@@ -38,6 +38,11 @@
             label="创建时间"
             width="200">
         </el-table-column>
+        <el-table-column
+            prop="modifyDate"
+            label="修改时间"
+            width="200">
+        </el-table-column>
         <el-table-column label="操作">
           <template slot-scope="scope">
             <el-button

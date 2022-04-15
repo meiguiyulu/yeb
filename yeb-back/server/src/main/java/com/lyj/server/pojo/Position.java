@@ -2,17 +2,22 @@ package com.lyj.server.pojo;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
+
 import java.util.Date;
+
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableField;
+
 import java.io.Serializable;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author LiuYunJie
@@ -41,7 +46,17 @@ public class Position implements Serializable {
      * 创建时间
      */
     @TableField("createDate")
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/shanghai")
     private Date createDate;
+
+    /**
+     * 修改时间
+     *
+     */
+    @TableField("modifyDate")
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/shanghai")
+    private Date modifyDate;
+
 
     /**
      * 是否启用
