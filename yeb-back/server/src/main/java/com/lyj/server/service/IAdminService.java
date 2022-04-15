@@ -3,8 +3,10 @@ package com.lyj.server.service;
 import com.lyj.server.common.RespBean;
 import com.lyj.server.pojo.Admin;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.lyj.server.pojo.Role;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * <p>
@@ -32,4 +34,11 @@ public interface IAdminService extends IService<Admin> {
      * @return
      */
     Admin getAdminByUsername(String username);
+
+    /**
+     * 根据用户Id查询权限
+     * @param adminId
+     * @return
+     */
+    List<Role> getRoles(Integer adminId);
 }

@@ -13,5 +13,14 @@
     <sql id="Base_Column_List">
         id, name, nameZh
     </sql>
+    <!-- 根据用户Id查询权限 -->
+    <select id="getRoles" resultType="com.lyj.server.pojo.Role">
+        select r.id,
+               r.name,
+               r.nameZh
+        from t_role as r
+                 left join t_admin_role as ar on r.id = ar.rid
+        where ar.adminId = #{adminId};
+    </select>
 
 </mapper>

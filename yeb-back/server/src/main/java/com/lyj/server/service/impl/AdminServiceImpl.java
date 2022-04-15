@@ -4,8 +4,10 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.lyj.server.common.RespBean;
 import com.lyj.server.config.security.JwtTokenUtil;
+import com.lyj.server.mapper.RoleMapper;
 import com.lyj.server.pojo.Admin;
 import com.lyj.server.mapper.AdminMapper;
+import com.lyj.server.pojo.Role;
 import com.lyj.server.service.IAdminService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,7 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -50,6 +53,9 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
 
     @Autowired
     private RedisTemplate<String, Object> redisTemplate;
+
+    @Autowired
+    private RoleMapper roleMapper;
 
     /**
      * 登录
@@ -106,5 +112,15 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
                 .eq("enabled", true);
         Admin admin = adminMapper.selectOne(wrapper);
         return admin;
+    }
+
+    /**
+     * 根据用户Id查询权限
+     * @param adminId
+     * @return
+     */
+    @Override
+    public List<Role> getRoles(Integer adminId) {
+        return roleMapper.getRoles(adminId);
     }
 }

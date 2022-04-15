@@ -1,18 +1,23 @@
 package com.lyj.server.config.security;
 
+import com.lyj.server.config.CustomFilter;
+import com.lyj.server.config.CustomUrlDecisionManager;
 import com.lyj.server.pojo.Admin;
 import com.lyj.server.service.IAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.ObjectPostProcessor;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import javax.servlet.http.PushBuilder;
@@ -29,6 +34,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private RestfulAccessDeniedHandler restfulAccessDeniedHandler;
 
+    @Autowired
+    private CustomFilter customFilter;
+    @Autowired
+    private CustomUrlDecisionManager customUrlDecisionManager;
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService())
@@ -41,9 +51,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return username -> {
             Admin admin = adminService.getAdminByUsername(username);
             if (null != admin) {
+                admin.setRoles(adminService.getRoles(admin.getId()));
                 return admin;
             }
-            return null;
+            throw new UsernameNotFoundException("用户名或密码不正确");
         };
     }
 
@@ -88,6 +99,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 /* 放行 登录注销 请求*/
 //                .antMatchers("/login", "/logout").permitAll()
                 .anyRequest().authenticated()
+                // 动态权限配置
+                .withObjectPostProcessor(new ObjectPostProcessor<FilterSecurityInterceptor>() {
+                    @Override
+                    public <O extends FilterSecurityInterceptor> O postProcess(O object) {
+                        object.setAccessDecisionManager(customUrlDecisionManager);
+                        object.setSecurityMetadataSource(customFilter);
+                        return object;
+                    }
+                })
                 .and()
                 .headers()
                 .cacheControl();
