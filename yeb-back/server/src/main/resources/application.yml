@@ -30,11 +30,11 @@ spring:
         #最小空闲连接
         min-idle: 5
 
-# MybatisPlus相关配置
-mybatis-plus:
-  configuration:
-    # 日志
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+## MybatisPlus相关配置
+#mybatis-plus:
+#  configuration:
+#    # 日志
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
 jwt:
   # JWT存储的请求头

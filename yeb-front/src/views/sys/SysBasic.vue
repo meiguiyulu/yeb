@@ -7,7 +7,6 @@
       <el-tab-pane label="奖惩规则" name="EcMana"><EcMana/></el-tab-pane>
       <el-tab-pane label="权限组" name="PositionMana"><PermissMana/></el-tab-pane>
     </el-tabs>
-    基础信息管理
   </div>
 </template>
 <script>

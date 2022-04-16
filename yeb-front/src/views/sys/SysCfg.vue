@@ -5,7 +5,7 @@
 </template>
 <script>
 export default {
-  name: "SysConfig",
+  name: "SysCfg",
   data() {
     return {}
   },
