@@ -4,7 +4,7 @@
       <el-input
           size="small"
           class="addPosInput"
-          placeholder="请选择日期"
+          placeholder="添加职位名称"
           suffix-icon="el-icon-plus"
           @keydown.enter.native="addPosition"
           v-model="pos.name">
@@ -42,6 +42,15 @@
             prop="modifyDate"
             label="修改时间"
             width="200">
+        </el-table-column>
+        <el-table-column
+            prop="enabled"
+            label="是否启用"
+            width="100">
+          <template slot-scope="scope">
+            <el-tag type="success" v-if="scope.row.enabled">已启用</el-tag>
+            <el-tag type="danger" v-else>未启用</el-tag>
+          </template>
         </el-table-column>
         <el-table-column label="操作">
           <template slot-scope="scope">

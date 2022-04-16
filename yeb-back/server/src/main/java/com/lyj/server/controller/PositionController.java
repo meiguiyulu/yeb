@@ -47,7 +47,7 @@ public class PositionController {
         if (positionService.save(position)) {
             return RespBean.success("添加成功!");
         }
-        return RespBean.success("添加失败!");
+        return RespBean.error("添加失败!");
     }
 
     @ApiOperation(value = "更新职位信息")
@@ -57,7 +57,7 @@ public class PositionController {
         if (positionService.updateById(position)) {
             return RespBean.success("添加成功!");
         }
-        return RespBean.success("添加失败!");
+        return RespBean.error("添加失败!");
     }
 
     @ApiOperation(value = "删除职位")
@@ -66,7 +66,7 @@ public class PositionController {
         if (positionService.removeById(id)) {
             return RespBean.success("删除成功!");
         }
-        return RespBean.success("删除失败!");
+        return RespBean.error("删除失败!");
     }
 
     @ApiOperation(value = "批量删除职位")
@@ -75,7 +75,7 @@ public class PositionController {
         if (positionService.removeByIds(Arrays.asList(ids))) {
             return RespBean.success("批量删除成功!");
         }
-        return RespBean.success("批量删除失败!");
+        return RespBean.error("批量删除失败!");
     }
 
 }
