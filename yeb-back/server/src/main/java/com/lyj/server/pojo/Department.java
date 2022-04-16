@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableField;
 import java.io.Serializable;
+import java.util.List;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -58,6 +60,18 @@ public class Department implements Serializable {
      */
     @TableField("isParent")
     private Boolean isParent;
+
+    /**
+     * 子部门
+     */
+    @TableField(exist = false)
+    private List<Department> children;
+
+    /**
+     * 返回结果  存储过程使用
+     */
+    @TableField(exist = false)
+    private Integer result;
 
 
 }

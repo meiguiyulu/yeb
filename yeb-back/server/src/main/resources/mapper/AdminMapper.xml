@@ -21,4 +21,34 @@
         id, name, phone, telephone, address, enabled, username, password, userFace, remark
     </sql>
 
+    <resultMap id="AdminWithRole" type="com.lyj.server.pojo.Admin" extends="BaseResultMap">
+        <collection property="roles" ofType="com.lyj.server.pojo.Role">
+            <id column="rid" property="id" />
+            <result column="rname" property="name" />
+            <result column="rnameZh" property="nameZh" />
+        </collection>
+    </resultMap>
+
+
+    <select id="getAllAdmin" resultMap="AdminWithRole">
+        select a.*,
+            r.id as rid,
+            r.name as rname,
+            r.nameZh as rameZh
+        from
+             t_admin as a,
+            t_admin_role as ar,
+            t_role as r
+        where
+          a.id = ar.adminId
+        and
+          r.id = ar.rid
+        and
+          a.id != #{id}
+        <if test="null!=keywords and ''!=keywords">
+            and a.name like concat('%', '#{keywords}', '%')
+        </if>
+        order by a.id
+    </select>
+
 </mapper>

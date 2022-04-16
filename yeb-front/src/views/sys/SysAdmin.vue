@@ -1,18 +1,18 @@
 <template>
   <div>
-<!--    &lt;!&ndash; 1、 &ndash;&gt;
+    <!-- 1、 -->
     <div style="display: flex;justify-content: center;margin-top: 10px;">
-      &lt;!&ndash; 9、v-model="keywords" \ @click="doSearch">搜索 &ndash;&gt;
+      <!-- 9、v-model="keywords" \ @click="doSearch">搜索 -->
       <el-input v-model="keywords" placeholder="通过用户名搜索用户..." prefix-icon="el-icon-search"
                 style="width: 400px;margin-right: 10px;"></el-input>
       <el-button type="primary" icon="el-icon-search" @click="doSearch">搜索</el-button>
     </div>
-    &lt;!&ndash; 2、6、 &ndash;&gt;
+    <!-- 2、6、 -->
     <div class="admin-container">
       <el-card class="admin-card" v-for="(admin,index) in admins" :key="index">
         <div slot="header" class="clearfix">
           <span>{{ admin.name }}</span>
-          &lt;!&ndash; 12、 @click="deleteAdmin(admin)" &ndash;&gt;
+          <!-- 12、 @click="deleteAdmin(admin)" -->
           <el-button style="float: right; padding: 3px 0;color:red;" type="text" icon="el-icon-delete"
                      @click="deleteAdmin(admin)"></el-button>
         </div>
@@ -27,7 +27,7 @@
           <div>电话号码：{{ admin.telephone }}</div>
           <div>地址：{{ admin.address }}</div>
           <div>用户状态：
-            &lt;!&ndash; 14、更新操作员 @change="enabledChange(admin)" &ndash;&gt;
+            <!-- 14、更新操作员 @change="enabledChange(admin)" -->
             <el-switch
                 v-model="admin.enabled"
                 active-color="#13ce66"
@@ -42,9 +42,9 @@
             <el-tag style="margin-right: 4px;" type="success" v-for="(role,index) in admin.roles" :key="index">
               {{ role.nameZh }}
             </el-tag>
-            &lt;!&ndash; 16、更新操作员角色 弹出框、选择器、 &ndash;&gt;
-            &lt;!&ndash; 20、@show="showPop(admin)" &ndash;&gt;
-            &lt;!&ndash; 24、@hide="hidePop(admin)" hide 隐藏时触发&ndash;&gt;
+            <!-- 16、更新操作员角色 弹出框、选择器、 -->
+            <!-- 20、@show="showPop(admin)" -->
+            <!-- 24、@hide="hidePop(admin)" hide 隐藏时触发-->
             <el-popover
                 placement="right"
                 title="角色列表"
@@ -52,8 +52,8 @@
                 @show="showPop(admin)"
                 @hide="hidePop(admin)"
                 trigger="click">
-              &lt;!&ndash; 17、更新操作员角色 下拉框 &ndash;&gt;
-              &lt;!&ndash; 22、v-model="selectedRoles" 存的是1个角色id，multiple 多选，显示已有角色 &ndash;&gt;
+              <!-- 17、更新操作员角色 下拉框 -->
+              <!-- 22、v-model="selectedRoles" 存的是1个角色id，multiple 多选，显示已有角色 -->
               <el-select v-model="selectedRoles" multiple placeholder="请选择">
                 <el-option
                     v-for="(r,index) in allRoles"
@@ -62,14 +62,14 @@
                     :value="r.id">
                 </el-option>
               </el-select>
-              &lt;!&ndash; 3个点按钮 ... &ndash;&gt;
+              <!-- 3个点按钮 ... -->
               <el-button slot="reference" type="text" icon="el-icon-more"></el-button>
             </el-popover>
           </div>
           <div>备注：{{ admin.remark }}</div>
         </div>
       </el-card>
-    </div>-->
+    </div>
     操作员管理
   </div>
 </template>

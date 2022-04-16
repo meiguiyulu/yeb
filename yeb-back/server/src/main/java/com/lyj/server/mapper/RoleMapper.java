@@ -2,6 +2,7 @@ package com.lyj.server.mapper;
 
 import com.lyj.server.pojo.Role;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
@@ -13,6 +14,7 @@ import java.util.List;
  * @author LiuYunJie
  * @since 2022-04-13
  */
+@Mapper
 public interface RoleMapper extends BaseMapper<Role> {
 
     /**

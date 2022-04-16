@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author LiuYunJie
@@ -20,6 +20,7 @@ public interface IAdminService extends IService<Admin> {
 
     /**
      * 登录功能
+     *
      * @param username
      * @param password
      * @param code
@@ -30,6 +31,7 @@ public interface IAdminService extends IService<Admin> {
 
     /**
      * 获取当前登录用户信息
+     *
      * @param username
      * @return
      */
@@ -37,8 +39,24 @@ public interface IAdminService extends IService<Admin> {
 
     /**
      * 根据用户Id查询权限
+     *
      * @param adminId
      * @return
      */
     List<Role> getRoles(Integer adminId);
+
+    /**
+     * 获取除当前登录用户所有操作员
+     *
+     * @return
+     */
+    List<Admin> getAllAdmin(String keywords);
+
+    /**
+     * 更新操作员角色
+     * @param adminId
+     * @param rids
+     * @return
+     */
+    RespBean updateAdminRole(Integer adminId, Integer[] rids);
 }
