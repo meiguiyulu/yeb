@@ -34,7 +34,7 @@
         select a.*,
             r.id as rid,
             r.name as rname,
-            r.nameZh as rameZh
+            r.nameZh as rnameZh
         from
              t_admin as a,
             t_admin_role as ar,

@@ -1,11 +1,14 @@
 package com.lyj.server.service;
 
+import com.lyj.server.common.RespPageBean;
 import com.lyj.server.pojo.Employee;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.time.LocalDate;
+
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author LiuYunJie
@@ -13,4 +16,14 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IEmployeeService extends IService<Employee> {
 
+    /**
+     * 分页获取所有员工
+     *
+     * @param currentPage
+     * @param pageSize
+     * @param employee
+     * @param dateScope
+     * @return
+     */
+    RespPageBean getEmployeeByPage(Integer currentPage, Integer pageSize, Employee employee, LocalDate[] dateScope);
 }

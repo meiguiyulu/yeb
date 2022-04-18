@@ -2,17 +2,23 @@ package com.lyj.server.pojo;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
+
+import java.time.LocalDate;
 import java.util.Date;
+
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableField;
+
 import java.io.Serializable;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author LiuYunJie
@@ -45,7 +51,8 @@ public class Employee implements Serializable {
     /**
      * 出生日期
      */
-    private Date birthday;
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/shanghai")
+    private LocalDate birthday;
 
     /**
      * 身份证号
@@ -135,7 +142,8 @@ public class Employee implements Serializable {
      * 入职日期
      */
     @TableField("beginDate")
-    private Date beginDate;
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/shanghai")
+    private LocalDate beginDate;
 
     /**
      * 在职状态
@@ -159,25 +167,29 @@ public class Employee implements Serializable {
      * 转正日期
      */
     @TableField("conversionTime")
-    private Date conversionTime;
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/shanghai")
+    private LocalDate conversionTime;
 
     /**
      * 离职日期
      */
     @TableField("notWorkDate")
-    private Date notWorkDate;
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/shanghai")
+    private LocalDate notWorkDate;
 
     /**
      * 合同起始日期
      */
     @TableField("beginContract")
-    private Date beginContract;
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/shanghai")
+    private LocalDate beginContract;
 
     /**
      * 合同终止日期
      */
     @TableField("endContract")
-    private Date endContract;
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/shanghai")
+    private LocalDate endContract;
 
     /**
      * 工龄
@@ -190,6 +202,36 @@ public class Employee implements Serializable {
      */
     @TableField("salaryId")
     private Integer salaryId;
+
+    /**
+     * 民族
+     */
+    @TableField(exist = false)
+    private Nation nation;
+
+    /**
+     * 政治面貌
+     */
+    @TableField(exist = false)
+    private PoliticsStatus politicsStatus;
+
+    /**
+     * 部门
+     */
+    @TableField(exist = false)
+    private Department department;
+
+    /**
+     * 职称
+     */
+    @TableField(exist = false)
+    private Joblevel joblevel;
+
+    /**
+     * 职位
+     */
+    @TableField(exist = false)
+    private Position position;
 
 
 }

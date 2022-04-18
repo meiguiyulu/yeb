@@ -39,7 +39,11 @@
           </div>
           <div>
             用户角色：
-            <el-tag style="margin-right: 4px;" type="success" v-for="(role,index) in admin.roles" :key="index">
+            <el-tag
+                style="margin-right: 4px;"
+                type="success"
+                v-for="(role,index) in admin.roles"
+                :key="index">
               {{ role.nameZh }}
             </el-tag>
             <!-- 16、更新操作员角色 弹出框、选择器、 -->
@@ -138,7 +142,7 @@ export default {
     },
     // 19、获取所有操作员
     initAllRoles() {
-      this.getRequest(' /system/admin/roles').then(resp => {
+      this.getRequest('/system/admin/roles').then(resp => {
         if (resp) {
           this.allRoles = resp
         }

@@ -53,7 +53,7 @@ public class AdminController {
 
     @ApiOperation(value = "删除操作员")
     @DeleteMapping("/{id}")
-    public RespBean deleteAdmin(@PathVariable Integer id) {
+    public RespBean deleteAdmin(@PathVariable("id") Integer id) {
         if (adminService.removeById(id)) {
             return RespBean.success("删除成功");
         }
@@ -62,13 +62,15 @@ public class AdminController {
 
     @ApiOperation(value = "获取所有角色")
     @GetMapping("/roles")
-    public List<Role> getAllRole() {
+    public List<Role> getAllRoles(){
         return roleService.list();
     }
 
+
     @ApiOperation(value = "更新操作员角色")
-    public RespBean updateAdminRole(Integer adminId, Integer[] rids) {
-        return adminService.updateAdminRole(adminId, rids);
+    @PutMapping("/role")
+    public RespBean updateAdminRole(Integer adminId,Integer[] rids){
+        return adminService.updateAdminRole(adminId,rids);
     }
 
 }
