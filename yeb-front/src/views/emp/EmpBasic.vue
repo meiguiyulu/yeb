@@ -716,14 +716,13 @@ export default {
         beginContract: [{required: true, message: '请输入合同起始日期', trigger: 'blur'}],
         endContract: [{required: true, message: '请输入合同结束日期', trigger: 'blur'}],
         workAge: [{required: true, message: '请输入工龄', trigger: 'blur'}]
-
       }
 
     }
   },
   mounted() {
     this.initEmps() // 5、获取所有员工（分页）
-    this.initData() // 23-9 添加员工
+    // this.initData() // 23-9 添加员工
     this.initPositions() // 23-12 获取职位
   },
   methods: {
@@ -932,6 +931,7 @@ export default {
       this.title = '添加员工' // 25-3 点击添加员工按钮时，弹出框标题为 添加员工
       this.getMaxWorkID() // 23-14 获取最大工号
       this.initPositions() // 23-12 获取职位
+      this.initData()
       this.dialogVisible = true
     },
     // 15、分页 每页显示多少条 默认会把 size 传进来
