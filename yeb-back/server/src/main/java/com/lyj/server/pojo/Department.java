@@ -1,5 +1,7 @@
 package com.lyj.server.pojo;
 
+import cn.afterturn.easypoi.excel.annotation.Excel;
+import cn.afterturn.easypoi.excel.annotation.ExcelEntity;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -36,6 +38,7 @@ public class Department implements Serializable {
     /**
      * 部门名称
      */
+    @Excel(name = "部门")
     private String name;
 
     /**

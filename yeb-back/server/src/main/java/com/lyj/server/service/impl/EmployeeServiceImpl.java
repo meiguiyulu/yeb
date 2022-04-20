@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.lyj.server.common.RespBean;
 import com.lyj.server.common.RespPageBean;
+import com.lyj.server.dto.EmployeeDTO;
 import com.lyj.server.pojo.Employee;
 import com.lyj.server.mapper.EmployeeMapper;
 import com.lyj.server.service.IEmployeeService;
@@ -89,5 +90,16 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee> i
             return RespBean.success("添加成功");
         }
         return RespBean.success("添加失败");
+    }
+
+    /**
+     * 获取员工数据
+     * @param id
+     * @return
+     */
+    @Override
+    public List<EmployeeDTO> getEmployee(Integer id) {
+
+        return employeeMapper.getEmployee(id);
     }
 }

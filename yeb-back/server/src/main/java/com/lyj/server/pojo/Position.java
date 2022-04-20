@@ -1,5 +1,7 @@
 package com.lyj.server.pojo;
 
+import cn.afterturn.easypoi.excel.annotation.Excel;
+import cn.afterturn.easypoi.excel.annotation.ExcelEntity;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 
@@ -40,6 +42,7 @@ public class Position implements Serializable {
     /**
      * 职位
      */
+    @Excel(name = "职位")
     private String name;
 
     /**

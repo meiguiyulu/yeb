@@ -11,7 +11,7 @@ import {putRequest} from "@/utils/api";
 import {getRequest} from "@/utils/api";
 import {deleteRequest} from "@/utils/api";
 import {initMenu} from "@/utils/mens";
-// import {downloadRequest} from "@/utils/download";
+import {downloadRequest} from "@/utils/download";
 
 Vue.config.productionTip = false
 

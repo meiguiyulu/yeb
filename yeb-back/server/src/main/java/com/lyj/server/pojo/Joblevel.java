@@ -1,5 +1,7 @@
 package com.lyj.server.pojo;
 
+import cn.afterturn.easypoi.excel.annotation.Excel;
+import cn.afterturn.easypoi.excel.annotation.ExcelEntity;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import java.util.Date;
@@ -37,6 +39,7 @@ public class Joblevel implements Serializable {
     /**
      * 职称名称
      */
+    @Excel(name = "职称")
     private String name;
 
     /**

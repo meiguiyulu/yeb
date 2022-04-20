@@ -1,5 +1,7 @@
 package com.lyj.server.pojo;
 
+import cn.afterturn.easypoi.excel.annotation.Excel;
+import cn.afterturn.easypoi.excel.annotation.ExcelEntity;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -33,6 +35,7 @@ public class PoliticsStatus implements Serializable {
     /**
      * 政治面貌
      */
+    @Excel(name = "政治面貌")
     private String name;
 
 

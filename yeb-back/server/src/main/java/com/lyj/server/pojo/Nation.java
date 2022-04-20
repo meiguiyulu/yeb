@@ -1,5 +1,8 @@
 package com.lyj.server.pojo;
 
+import cn.afterturn.easypoi.excel.annotation.Excel;
+import cn.afterturn.easypoi.excel.annotation.ExcelEntity;
+import cn.afterturn.easypoi.excel.annotation.ExcelTarget;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -20,6 +23,7 @@ import lombok.experimental.Accessors;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("t_nation")
+@ExcelTarget(value = "nation")
 public class Nation implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -33,6 +37,7 @@ public class Nation implements Serializable {
     /**
      * 民族
      */
+    @Excel(name = "员工民族")
     private String name;
 
 

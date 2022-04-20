@@ -2,10 +2,13 @@ package com.lyj.server.service;
 
 import com.lyj.server.common.RespBean;
 import com.lyj.server.common.RespPageBean;
+import com.lyj.server.dto.EmployeeDTO;
 import com.lyj.server.pojo.Employee;
 import com.baomidou.mybatisplus.extension.service.IService;
+import io.swagger.models.auth.In;
 
 import java.time.LocalDate;
+import java.util.List;
 
 /**
  * <p>
@@ -42,4 +45,12 @@ public interface IEmployeeService extends IService<Employee> {
      * @return
      */
     RespBean addEmp(Employee employee);
+
+    /**
+     *
+     * 获取员工数据
+     * @return
+     */
+    List<EmployeeDTO> getEmployee(Integer id);
+
 }
