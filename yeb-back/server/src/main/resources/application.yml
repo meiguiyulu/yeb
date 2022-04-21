@@ -36,6 +36,10 @@ spring:
     username: ems
     password: 123
     virtual-host: /ems
+    #消息确认回调
+    publisher-confirm-type: correlated
+    #消息失败回调
+    publisher-returns: true
   # 邮件配置
 #  mail:
 #    # 邮件服务器地址
