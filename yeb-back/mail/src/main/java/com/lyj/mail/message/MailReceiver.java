@@ -1,5 +1,6 @@
 package com.lyj.mail.message;
 
+import com.lyj.server.common.MailConstants;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.Queue;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
@@ -33,7 +34,7 @@ public class MailReceiver {
     @Autowired
     private TemplateEngine templateEngine;
 
-    @RabbitListener(queuesToDeclare = @Queue(value = "mail.welcome"))
+    @RabbitListener(queuesToDeclare = @Queue(value = MailConstants.MAIL_QUEUE_NAME))
     public void sendMail(Employee employee){
         MimeMessage message = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message);
@@ -50,9 +51,9 @@ public class MailReceiver {
             //邮件内容
             Context context = new Context();
             context.setVariable("name", employee.getName());
-            context.setVariable("posName", employee.getPosition().getName());
+/*            context.setVariable("posName", employee.getPosition().getName());
             context.setVariable("joblevelName", employee.getJoblevel().getName());
-            context.setVariable("departmentName", employee.getDepartment().getName());
+            context.setVariable("departmentName", employee.getDepartment().getName());*/
             String mail = templateEngine.process("mail", context);
             helper.setText(mail, true);
             //发送邮件

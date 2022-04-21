@@ -1,6 +1,8 @@
 package com.lyj.server.pojo;
 
 import com.baomidou.mybatisplus.annotation.TableName;
+
+import java.time.LocalDateTime;
 import java.util.Date;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -61,7 +63,7 @@ public class MailLog implements Serializable {
      * 重试时间
      */
     @TableField("tryTime")
-    private Date tryTime;
+    private LocalDateTime tryTime;
 
     /**
      * 创建时间
