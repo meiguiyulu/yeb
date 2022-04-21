@@ -5,6 +5,7 @@
       <list>
         <option value="$PROJECT_DIR$/yeb-back/pom.xml" />
         <option value="$PROJECT_DIR$/yeb-back/server/pom.xml" />
+        <option value="$PROJECT_DIR$/yeb-back/mail/pom.xml" />
       </list>
     </option>
   </component>

@@ -10,6 +10,7 @@ import com.lyj.server.pojo.Employee;
 import com.lyj.server.mapper.EmployeeMapper;
 import com.lyj.server.service.IEmployeeService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,6 +33,9 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee> i
 
     @Autowired
     private EmployeeMapper employeeMapper;
+
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
 
 
     /**
@@ -87,6 +91,11 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee> i
         }
 
         if (employeeMapper.insert(employee) == 1) {
+            Employee emp = employeeMapper.selectById(employee.getId());
+
+            /* 发送邮件功能 */
+            rabbitTemplate.convertAndSend("mail.welcome", emp);
+
             return RespBean.success("添加成功");
         }
         return RespBean.success("添加失败");
@@ -94,6 +103,7 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee> i
 
     /**
      * 获取员工数据
+     *
      * @param id
      * @return
      */

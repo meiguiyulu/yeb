@@ -7,16 +7,19 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="yeb-back" />
+        <module name="mail" />
         <module name="server" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="mail" target="11" />
       <module name="server" target="11" />
       <module name="yeb-back" target="1.5" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="mail" options="-parameters" />
       <module name="server" options="-parameters" />
     </option>
   </component>
