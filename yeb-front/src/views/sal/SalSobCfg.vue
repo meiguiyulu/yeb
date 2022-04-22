@@ -18,7 +18,7 @@
           width="120">
       </el-table-column>
       <el-table-column
-          prop="workId"
+          prop="workID"
           label="工号"
           align="left"
           width="120">

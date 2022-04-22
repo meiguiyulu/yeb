@@ -1,11 +1,12 @@
 package com.lyj.server.service;
 
+import com.lyj.server.common.RespPageBean;
 import com.lyj.server.pojo.Salary;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author LiuYunJie

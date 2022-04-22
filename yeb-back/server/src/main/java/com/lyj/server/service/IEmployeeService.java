@@ -47,10 +47,18 @@ public interface IEmployeeService extends IService<Employee> {
     RespBean addEmp(Employee employee);
 
     /**
-     *
      * 获取员工数据
+     *
      * @return
      */
     List<EmployeeDTO> getEmployee(Integer id);
 
+    /**
+     * 获取所有员工账套
+     *
+     * @param currentPage
+     * @param pageSize
+     * @return
+     */
+    RespPageBean getEmployeeWithSalary(Integer currentPage, Integer pageSize);
 }
