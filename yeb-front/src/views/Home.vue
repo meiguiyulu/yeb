@@ -3,16 +3,24 @@
     <el-container>
       <el-header class="homeHeader">
         <div class="title">云E办</div>
-        <el-dropdown class="userInfo" @command="commandHandler">
+        <div>
+          <el-button icon="el-icon-bell"
+                     type="text"
+                     size="big"
+                     style="margin-right: 8px; color: black"
+                     @click="goChat">
+          </el-button>
+          <el-dropdown class="userInfo" @command="commandHandler">
                     <span class="el-dropdown-link">
                       {{ user.name }}<i><img :src="user.userFace"></i>
                     </span>
-          <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item command="userinfo">个人中心</el-dropdown-item>
-            <el-dropdown-item command="setting">设置</el-dropdown-item>
-            <el-dropdown-item command="logout">注销登录</el-dropdown-item>
-          </el-dropdown-menu>
-        </el-dropdown>
+            <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item command="userinfo">个人中心</el-dropdown-item>
+              <el-dropdown-item command="setting">设置</el-dropdown-item>
+              <el-dropdown-item command="logout">注销登录</el-dropdown-item>
+            </el-dropdown-menu>
+          </el-dropdown>
+        </div>
       </el-header>
       <el-container>
         <!--侧边栏-->
@@ -37,7 +45,7 @@
         <el-container>
           <el-main>
             <!-- element-ui 面包屑 -->
-            <el-breadcrumb separator-class="el-icon-arrow-right"  v-if="this.$router.currentRoute.path != '/home'">
+            <el-breadcrumb separator-class="el-icon-arrow-right" v-if="this.$router.currentRoute.path != '/home'">
               <el-breadcrumb-item :to="{ path: '/home' }">首页</el-breadcrumb-item>
               <el-breadcrumb-item>{{ this.$router.currentRoute.name }}</el-breadcrumb-item>
             </el-breadcrumb>
@@ -73,6 +81,9 @@ export default {
     /*    menuClick(index) {
           this.$router.push(index);
         }*/
+    goChat() {
+      this.$router.push('/chat')
+    },
     // 注销登录
     commandHandler(command) {
       if (command === 'logout') {
